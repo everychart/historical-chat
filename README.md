@@ -9,7 +9,7 @@ An interactive chat application that allows users to have conversations with his
 - User authentication
 - Save and share conversations
 - Like and comment on shared chats
-- User mentions in comments  
+- User mentions in comments
 - View historical figures' works and information  
 
 ## Tech Stack
