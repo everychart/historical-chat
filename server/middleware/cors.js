@@ -1,5 +1,4 @@
 const cors = require('cors');
-
 const corsOptions = {
   origin: process.env.FRONTEND_URL || '*', // Replace with your frontend URL
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
