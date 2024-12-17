@@ -5,6 +5,7 @@
   "dependencies": {
     "@emotion/react": "^11.13.3",
     "@emotion/styled": "^11.13.0",
+    "@google-cloud/secret-manager": "^5.6.0",
     "@mui/icons-material": "^6.1.7",
     "@mui/material": "^6.1.7",
     "axios": "^1.7.7",
@@ -35,5 +36,17 @@
     "deploy": "gh-pages -d build",
     "process-images": "node scripts/process-images.js",
     "fix-images": "node scripts/fix-missing-images.js"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }
