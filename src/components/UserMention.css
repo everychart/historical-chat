@@ -1,0 +1,32 @@
+.mention-menu {
+  position: absolute;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  max-height: 200px;
+  overflow-y: auto;
+  z-index: 1000;
+  min-width: 200px;
+}
+
+.mention-list {
+  padding: 0.5rem;
+}
+
+.mention-item {
+  padding: 0.5rem;
+  cursor: pointer;
+  border-radius: 0.25rem;
+  transition: all 0.2s;
+}
+
+.mention-item:hover {
+  background: var(--accent);
+}
+
+.mention-loading {
+  padding: 1rem;
+  text-align: center;
+  color: var(--text-secondary);
+} 

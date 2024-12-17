@@ -8,15 +8,26 @@
     "@mui/icons-material": "^6.1.7",
     "@mui/material": "^6.1.7",
     "axios": "^1.7.7",
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.9.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-icons": "^5.3.0",
     "react-scripts": "^5.0.1",
     "sharp": "^0.33.5"
   },
-  "main": "index.js",
+  "devDependencies": {
+    "concurrently": "^7.6.0"
+  },
+  "main": "server/server.js",
   "scripts": {
-    "start": "react-scripts start",
+    "start": "concurrently \"npm run start-backend\" \"npm run start-frontend\"",
+    "start-backend": "node server/server.js",
+    "start-frontend": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
@@ -24,25 +35,5 @@
     "deploy": "gh-pages -d build",
     "process-images": "node scripts/process-images.js",
     "fix-images": "node scripts/fix-missing-images.js"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": "",
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  },
-  "devDependencies": {
-    "gh-pages": "^6.2.0"
-  },
-  "homepage": "https://heidiEC.github.io/historical-chat"
+  }
 }

@@ -2,34 +2,46 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-    branches:
-      - main
-
-permissions:
-  contents: write
+    branches: [ main ]
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+    env:
+      REACT_APP_API_URL: ${{ secrets.REACT_APP_API_URL }}
+      REACT_APP_HUGGING_FACE_API_KEY: ${{ secrets.REACT_APP_HUGGING_FACE_API_KEY }}
+
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
+    - uses: actions/checkout@v2
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '18'
+    - name: Setup Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '16'
 
-      - name: Install Dependencies
-        run: npm install
+    - name: Install Frontend Dependencies
+      run: npm install
 
-      - name: Build
-        env:
-          REACT_APP_HUGGING_FACE_API_KEY: ${{ secrets.REACT_APP_HUGGING_FACE_API_KEY }}
-        run: npm run build
+    - name: Install Backend Dependencies
+      run: |
+        cd server
+        npm install
+        cd ..
 
-      - name: Deploy
-        uses: JamesIves/github-pages-deploy-action@v4
-        with:
-          branch: gh-pages
-          folder: build
+    - name: Create env file
+      run: |
+        touch .env
+        echo "REACT_APP_API_URL=${REACT_APP_API_URL}" >> .env
+        echo "REACT_APP_HUGGING_FACE_API_KEY=${REACT_APP_HUGGING_FACE_API_KEY}" >> .env
+
+    - name: Build Frontend
+      run: npm run build
+      env:
+        CI: false
+
+    - name: Deploy to GitHub Pages
+      uses: JamesIves/github-pages-deploy-action@4.1.5
+      with:
+        branch: gh-pages
+        folder: build
+        clean: true
