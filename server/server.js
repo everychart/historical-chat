@@ -1,4 +1,5 @@
 require('dotenv').config();
+const router = require('express').Router();
 const path = require('path');
 const auth = require('./routes/auth')
 const chats = require('./routes/chats')
@@ -18,6 +19,15 @@ mongoose.connect(mongoURI)
   .then(() => console.log('Connected to MongoDB'))
   .catch(err => console.error('MongoDB connection error:', err));
 
+
+router.get('/hello', auth, async (req, res) => {
+  try {
+    res.status(200);
+    res.send('Hello World!');
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
 
   // This code makes sure that any request that does not matches a static file
 // in the build folder, will just serve index.html. Client side routing is
@@ -66,8 +76,8 @@ app.use('/api/chats', chats);
 app.use('/api/auth', auth);
 app.use('/api/users', users);
 
-// Serve static files from the React app
-app.use(express.static(path.join(__dirname, '../client/build')));
+// // Serve static files from the React app
+// app.use(express.static(path.join(__dirname, '../client/build')));
 
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
