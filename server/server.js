@@ -40,10 +40,10 @@ app.use((req, res, next) => {
       res.header('Expires', '-1');
       res.header('Pragma', 'no-cache');
       console.log('__dirname', __dirname);
-      res.sendFile(path.join('workspace', 'build', 'index.html'));
+      res.sendFile(path.join('/workspace', 'build', 'index.html'));
   }
 });
-app.use(express.static(path.join('workspace', 'build')));
+app.use(express.static(path.join('/workspace', 'build')));
 
 // Authentication middleware (before CORS and JSON parsing)
 app.use((req, res, next) => {
