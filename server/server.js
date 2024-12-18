@@ -18,6 +18,22 @@ mongoose.connect(mongoURI)
   .then(() => console.log('Connected to MongoDB'))
   .catch(err => console.error('MongoDB connection error:', err));
 
+
+  // This code makes sure that any request that does not matches a static file
+// in the build folder, will just serve index.html. Client side routing is
+// going to make sure that the correct content will be loaded.
+app.use((req, res, next) => {
+  if (/(.ico|.js|.css|.jpg|.png|.map)$/i.test(req.path)) {
+      next();
+  } else {
+      res.header('Cache-Control', 'private, no-cache, no-store, must-revalidate');
+      res.header('Expires', '-1');
+      res.header('Pragma', 'no-cache');
+      res.sendFile(path.join(__dirname, 'build', 'index.html'));
+  }
+});
+app.use(express.static(path.join(__dirname, 'build')));
+
 // Authentication middleware (before CORS and JSON parsing)
 app.use((req, res, next) => {
   const token = req.header('x-auth-token');
@@ -41,9 +57,9 @@ app.use(cors);
 app.use(express.json());
 
 
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname + '/../client/build/index.html'));
-});
+// app.get('*', (req, res) => {
+//   res.sendFile(path.join(__dirname + '/../client/build/index.html'));
+// });
 
 // Routes
 app.use('/api/chats', chats);
