@@ -32,7 +32,7 @@
   },
   "main": "server/server.js",
   "scripts": {
-    "start": "concurrently \"npm run start-backend\" \"npm run start-frontend\"",
+    "start": "node server/server.js",
     "start-backend": "node server/server.js",
     "start-frontend": "react-scripts start",
     "build": "react-scripts build",
