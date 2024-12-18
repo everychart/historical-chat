@@ -11,6 +11,8 @@ const jwt = require('jsonwebtoken');
 const mongoURI = process.env.MONGODB_URI
 const jwtSecret = process.env.JWT_SECRET
 
+const app = express();
+
 // Connect to MongoDB
 mongoose.connect(mongoURI)
   .then(() => console.log('Connected to MongoDB'))
