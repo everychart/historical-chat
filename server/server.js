@@ -8,8 +8,8 @@ const mongoose = require('mongoose');
 const cors = require('./middleware/cors'); // Correct import path
 const jwt = require('jsonwebtoken');
 
-const mongoURI = process.env.get('MONGODB_URI')
-const jwtSecret = process.env.get('JWT_SECRET')
+const mongoURI = process.env.MONGODB_URI
+const jwtSecret = process.env.JWT_SECRET
 
 // Connect to MongoDB
 mongoose.connect(mongoURI)
