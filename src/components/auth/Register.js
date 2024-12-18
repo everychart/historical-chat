@@ -8,7 +8,8 @@ function Register({ onToggleForm }) {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const { register } = useAuth();
-
+  const { login } = useAuth();
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
