@@ -1,27 +1,15 @@
+require('dotenv').config();
 const path = require('path');
 const auth = require('./routes/auth')
 const chats = require('./routes/chats')
 const users = require('./routes/users')
-const { SecretManagerServiceClient } = require('@google-cloud/secret-manager')
-require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('./middleware/cors'); // Correct import path
 const jwt = require('jsonwebtoken');
-const client = new SecretManagerServiceClient();
-async function accessSecret(secretName) {
-  const [version] = await client.accessSecretVersion({
-    name: `projects/mabelanddorothy/secrets/${secretName}/versions/latest`,
-  });
-  const payload = version.payload.data.toString('utf8');
-  console.log(`Secret data: ${payload}`);
-  return payload;
-}
 
-const mongoURI = await accessSecret('MONGODB_URI')
-const jwtSecret = await accessSecret('JWT_SECRET')
-const app = express();
-
+const mongoURI = process.env.get('MONGODB_URI')
+const jwtSecret = process.env.get('JWT_SECRET')
 
 // Connect to MongoDB
 mongoose.connect(mongoURI)
