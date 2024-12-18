@@ -18,7 +18,7 @@
 
 # # Define the command to run the application
 # CMD ["node", "server/server.js"]
-FROM node:20
+FROM node:18
 
 # Create and change to the app directory.
 WORKDIR /usr/src/app
