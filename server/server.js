@@ -39,10 +39,11 @@ app.use((req, res, next) => {
       res.header('Cache-Control', 'private, no-cache, no-store, must-revalidate');
       res.header('Expires', '-1');
       res.header('Pragma', 'no-cache');
-      res.sendFile(path.join(__dirname, 'build', 'index.html'));
+      console.log('__dirname', __dirname);
+      res.sendFile(path.join('workspace', 'build', 'index.html'));
   }
 });
-app.use(express.static(path.join(__dirname, 'build')));
+app.use(express.static(path.join('workspace', 'build')));
 
 // Authentication middleware (before CORS and JSON parsing)
 app.use((req, res, next) => {
