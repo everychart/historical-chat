@@ -41,17 +41,17 @@ app.use(cors);
 app.use(express.json());
 
 
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname + '/../client/build/index.html'));
+});
+
 // Routes
-app.use('/api/auth', auth);
 app.use('/api/chats', chats);
+app.use('/api/auth', auth);
 app.use('/api/users', users);
 
 // Serve static files from the React app
 app.use(express.static(path.join(__dirname, '../client/build')));
-
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname + '/../client/build/index.html'));
-});
 
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
