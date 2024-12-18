@@ -1,0 +1,1 @@
+export const API_URL = 'https://mnd-246901492539.us-central1.run.app/';

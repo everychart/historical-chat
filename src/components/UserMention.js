@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './UserMention.css';
-
+import { API_URL } from '../const';
 function UserMention({ onSelect, onClose, position }) {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -13,7 +13,7 @@ function UserMention({ onSelect, onClose, position }) {
 
   const fetchUsers = async () => {
     try {
-      const response = await fetch(`http://localhost:5000/api/users/search?q=${search}`, {
+      const response = await fetch(`${API_URL}/api/users/search?q=${search}`, {
         headers: {
           'x-auth-token': localStorage.getItem('token')
         }

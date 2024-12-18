@@ -3,8 +3,7 @@ import { useAuth } from '../context/AuthContext';
 import { query as generateResponse } from '../services/huggingFaceService';
 import WorksList from './WorksList';
 import './ChatInterface.css';
-
-const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+import { API_URL } from '../const';
 
 function ChatInterface({ character, onClose }) {
   const { user } = useAuth();
