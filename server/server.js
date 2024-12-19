@@ -78,7 +78,7 @@ app.use(express.json());
 app.use('/api/chats', chats);
 app.use('/api/auth', auth);
 app.use('/api/users', users);
-app.use('/api/generate', generate);
+app.use('/api/llm', generate);
 // // Serve static files from the React app
 // app.use(express.static(path.join(__dirname, '../client/build')));
 
