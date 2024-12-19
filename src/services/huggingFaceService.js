@@ -5,6 +5,7 @@ export const query = async ({ inputs, character }) => {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        'x-auth-token': localStorage.getItem('token')
       },
       body: JSON.stringify({ inputs, character })
     });
