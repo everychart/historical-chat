@@ -3,7 +3,6 @@ import { useAuth } from '../../context/AuthContext';
 import './Auth.css';
 
 function Register({ onToggleForm }) {
-  const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
