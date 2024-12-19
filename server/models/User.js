@@ -8,7 +8,7 @@ mongoose.connect(mongoURI)
 const userSchema = new mongoose.Schema({
   username: {
     type: String,
-    required: false,
+    required: true,
     unique: true,
     trim: true
   },
