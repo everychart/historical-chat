@@ -46,6 +46,8 @@ app.use(express.static(path.join('/workspace', 'build')));
 
 // Authentication middleware (before CORS and JSON parsing)
 app.use((req, res, next) => {
+  const exceptions = ['login', 'register', 'home'];
+  if ( exceptions.includes(req.path)) return next();
   const token = req.header('x-auth-token');
   if (!token) {
     return res.status(401).json({ message: 'No token, authorization denied' });
