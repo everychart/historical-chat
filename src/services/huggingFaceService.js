@@ -1,7 +1,7 @@
 import {API_URL} from '../const'
 export const query = async ({ inputs, character }) => {
   try {
-    const response = await fetch(`${API_URL}/generate`, {
+    const response = await fetch(`${API_URL}/api/generate`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

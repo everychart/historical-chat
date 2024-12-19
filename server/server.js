@@ -4,6 +4,7 @@ const path = require('path');
 const auth = require('./routes/auth')
 const chats = require('./routes/chats')
 const users = require('./routes/users')
+const generate = require('./routes/generate')
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('./middleware/cors'); // Correct import path
@@ -77,7 +78,7 @@ app.use(express.json());
 app.use('/api/chats', chats);
 app.use('/api/auth', auth);
 app.use('/api/users', users);
-
+app.use('/api/generate', generate);
 // // Serve static files from the React app
 // app.use(express.static(path.join(__dirname, '../client/build')));
 
