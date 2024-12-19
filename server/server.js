@@ -8,6 +8,16 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('./middleware/cors'); // Correct import path
 const jwt = require('jsonwebtoken');
+const publicIp = require('public-ip');
+
+(async () => {
+  try {
+    const ip = await publicIp.v4();
+    console.log('PUBLIC IP: ',ip); 
+  } catch (error) {
+    console.error(error);
+  }
+})();
 
 const mongoURI = process.env.MONGODB_URI
 
