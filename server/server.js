@@ -32,7 +32,7 @@ router.get('/hello', auth, async (req, res) => {
   // This code makes sure that any request that does not matches a static file
 // in the build folder, will just serve index.html. Client side routing is
 // going to make sure that the correct content will be loaded.
-app.use((req, res, next) => {
+app.get('*',(req, res, next) => {
   if (/(.ico|.js|.css|.jpg|.png|.map)$/i.test(req.path)) {
       next();
   } else {
