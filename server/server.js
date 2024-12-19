@@ -10,15 +10,15 @@ const cors = require('./middleware/cors'); // Correct import path
 const jwt = require('jsonwebtoken');
 
 const mongoURI = process.env.MONGODB_URI
-const jwtSecret = process.env.JWT_SECRET
-
-const app = express();
 
 // Connect to MongoDB
 mongoose.connect(mongoURI)
   .then(() => console.log('Connected to MongoDB'))
   .catch(err => console.error('MongoDB connection error:', err));
 
+const jwtSecret = process.env.JWT_SECRET
+
+const app = express();
 
 router.get('/hello', auth, async (req, res) => {
   try {
@@ -46,7 +46,7 @@ app.use(express.static(path.join('/workspace', 'build')));
 
 // Authentication middleware (before CORS and JSON parsing)
 app.use((req, res, next) => {
-  const exceptions = ['/api/auth/login', '/api/auth/register', 'hello'];
+  const exceptions = ['/api/auth/login', '/api/auth/register', '/hello'];
   if ( exceptions.includes(req.path)) return next();
   const token = req.header('x-auth-token');
   if (!token) {
