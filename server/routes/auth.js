@@ -20,7 +20,7 @@ router.post('/register', async (req, res) => {
 
     // Create new user
     const user = new User({
-      username:email,
+      username: email,
       email,
       password: hashedPassword
     });
@@ -29,7 +29,7 @@ router.post('/register', async (req, res) => {
 
     // Create token
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
-    res.status(201).json({ token, user: { id: user._id, username, email } });
+    res.status(201).json({ token, user: { id: user._id, email, email } });
   } catch (err) {
     console.log('err',err);
     res.status(500).json({ message: err.message });
